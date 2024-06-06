@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { message } from "antd";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import './styles.css'; // Import the CSS file
 
 function Login() {
   const [inpval, setInpval] = useState({
@@ -21,7 +22,7 @@ function Login() {
   const addUserData = async (e) => {
     e.preventDefault();
 
-    const { name, password} = inpval;
+    const { name, password } = inpval;
 
     if (name === "" || password === "") {
       message.error("Please fill in all the fields");
@@ -34,45 +35,45 @@ function Login() {
     }
 
     const formData = {
-        name,
-        password,
+      name,
+      password,
     };
 
     try {
-        const response = await fetch("http://localhost:5013/api/User/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+      const response = await fetch("http://localhost:5013/api/User/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        message.success("User logged in successfully");
+        message.success("🎉Welcome to Xpense Mate!");
+        setInpval({
+          name: "",
+          password: "",
         });
-  
-        if (response.ok) {
-          message.success("User logged in successfully");
-          message.success("🎉Welcome to Xpense Mate!")
-          setInpval({
-            name: "",
-            password: "",
-          });
-          const data = await response.json();
-          localStorage.setItem('token', data.token);
-          navigate("/home");
-        } else {
-          message.error("Invalid Credentials");
-        }
-      } catch (error) {
-        console.error("Error:", error);
-        message.error("Failed to login");
+        const data = await response.json();
+        localStorage.setItem('token', data.token);
+        navigate("/home");
+      } else {
+        message.error("Invalid Credentials");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      message.error("Failed to login");
     }
   };
 
   return (
     <div className="container">
       <div className="sign-in">
-      <form>
+        <form>
           <h1>Sign In</h1>
           <div className="form_input">
-            <label hmlFor="name">Username</label>
+            <label htmlFor="name">Username</label>
             <input
               type="text"
               onChange={setVal}
@@ -84,7 +85,7 @@ function Login() {
             />
           </div>
           <div className="form_input">
-            <label hmlFor="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input
               type="password"
               onChange={setVal}
@@ -99,9 +100,12 @@ function Login() {
             Sign In
           </button>
         </form>
+        <p className="register-prompt">
+          Don't have an account? <span className="register-link" onClick={() => navigate("/register")}>Register</span>
+        </p>
       </div>
     </div>
-  )
+  );
 }
 
 export default Login;

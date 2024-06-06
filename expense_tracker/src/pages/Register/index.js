@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { message } from "antd";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import './styles.css'; // Import the CSS file
 
 function Register() {
   const [inpval, setInpval] = useState({
@@ -21,7 +22,7 @@ function Register() {
   const addUserData = async (e) => {
     e.preventDefault();
 
-    const { name, password} = inpval;
+    const { name, password } = inpval;
 
     if (name === "" || password === "") {
       message.error("Please fill in all the fields");
@@ -34,42 +35,42 @@ function Register() {
     }
 
     const formData = {
-        name,
-        password,
+      name,
+      password,
     };
 
     try {
-        const response = await fetch("http://localhost:5013/api/User/register", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+      const response = await fetch("http://localhost:5013/api/User/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        message.success("User registered successfully");
+        setInpval({
+          name: "",
+          password: "",
         });
-  
-        if (response.ok) {
-          message.success("User registered successfully");
-          setInpval({
-            name: "",
-            password: "",
-          });
-          navigate("/login");
-        } else {
-          message.error("User already exists");
-        }
-      } catch (error) {
-        console.error("Error:", error);
-        message.error("An error occurred while registering the user");
+        navigate("/login");
+      } else {
+        message.error("User already exists");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      message.error("An error occurred while registering the user");
     }
   };
 
   return (
     <div className="container">
       <div className="sign-up">
-      <form>
+        <form>
           <h1>Sign Up</h1>
           <div className="form_input">
-            <label hmlFor="name">Username</label>
+            <label htmlFor="name">Username</label>
             <input
               type="text"
               onChange={setVal}
@@ -81,7 +82,7 @@ function Register() {
             />
           </div>
           <div className="form_input">
-            <label hmlFor="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input
               type="password"
               onChange={setVal}
@@ -96,9 +97,13 @@ function Register() {
             Sign Up
           </button>
         </form>
+        <p className="login-prompt">
+          Already have an account? <span className="login-link" onClick={() => navigate("/login")}>Login</span>
+        </p>
       </div>
     </div>
   );
 }
 
 export default Register;
+
