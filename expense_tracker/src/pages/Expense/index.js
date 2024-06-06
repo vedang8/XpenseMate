@@ -101,6 +101,7 @@ const Expense = () => {
         const updatedExpenses = [...expenses];
         updatedExpenses.splice(index, 1);
         setExpenses(updatedExpenses);
+        fetchTodayTotal();
         message.success('Expense deleted successfully');
       } else {
         const errorData = await response.json();
@@ -135,6 +136,7 @@ const Expense = () => {
       if (response.ok) {
         const newExpense = await response.json();
         setExpenses([...expenses, newExpense]);
+        fetchTodayTotal();
         message.success('Expense added successfully');
         setForm({ name: '', description: '', date: '', amount: '', categoryId: '' });
       } else {

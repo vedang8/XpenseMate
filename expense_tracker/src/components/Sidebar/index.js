@@ -1,6 +1,6 @@
 // src/Sidebar.js
 import React, {useState, useEffect} from 'react';
-import { FaUserCircle, FaTachometerAlt, FaWallet, FaFileExport, FaSignOutAlt } from 'react-icons/fa';
+import { FaUserCircle, FaTachometerAlt, FaWallet, FaFileExport, FaSignOutAlt, FaHistory } from 'react-icons/fa';
 import { NavLink , useNavigate} from 'react-router-dom';
 import './Sidebar.css';
 import { message } from 'antd';
@@ -73,6 +73,10 @@ const Sidebar = () => {
         <NavLink to="/expense" className="menu-item" activeClassName="active">
           <FaWallet />
           <span>Expenses</span>
+        </NavLink>
+        <NavLink to="/history" className="menu-item" activeClassName="active">
+          <FaHistory />
+          <span>History</span>
         </NavLink>
         <NavLink to="/export" className="menu-item" activeClassName="active">
           <FaFileExport />
