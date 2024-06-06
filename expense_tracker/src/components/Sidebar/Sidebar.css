@@ -1,0 +1,85 @@
+/* src/Sidebar.css */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background: linear-gradient(145deg, #560131, #570231);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    padding: 20px 10px;
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .title .highlight {
+    color: #f60cb0; /* Gold color for "Mate" to catch the eye */
+    margin-left: 5px;
+    text-shadow: 2px 2px 4px rgba(207, 199, 206, 0.5);
+  }
+  
+  .user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .user-profile h3 {
+    margin-top: 10px;
+    font-size: 32px;
+  }
+  
+  .menu {
+    flex-grow: 1;
+  }
+  
+  .menu-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+    text-decoration: none;
+    color: white;
+  }
+  
+  .menu-item:hover, .menu-item.active {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+  }
+  
+  .menu-item span {
+    margin-left: 10px;
+    font-size: 1em;
+  }
+  
+  .logout {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .logout:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+  }
+  
+  .logout span {
+    margin-left: 10px;
+    font-size: 1em;
+  }
+  
+  
+  

@@ -1,0 +1,67 @@
+/* src/pages/Home/Home.css */
+
+.home-page {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .home-content {
+    width: 50%;
+    padding: 20px;
+    color: #3f1a31;
+  }
+  
+  .home-title {
+    font-size: 3.5em;
+    font-weight: bold;
+    color: #6a0dad;
+    margin-bottom: 100px;
+  }
+  
+  .floating-quote {
+    font-size: 1.5em;
+    font-style: italic;
+    color: #888;
+    animation: float 5s ease-in-out infinite alternate;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  .image-container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: float 5s ease-in-out infinite alternate;
+  }
+  
+  .home-image {
+    max-width: 400px;
+    height: 400px;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  @keyframes rotate-left {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-10deg); /* Adjust the angle as needed */
+    }
+  }
+  
+  /* Apply the animation on hover */
+  .home-image:hover {
+    animation: rotate-left 0.5s ease forwards;
+  }
+  
