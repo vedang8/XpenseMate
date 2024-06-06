@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { DatePicker, Select, Button, message, Modal } from "antd";
-import moment from 'moment';
 import { FaCalendarAlt, FaMoneyBillWave, FaBullseye, FaEdit, FaTrash } from "react-icons/fa";
+import moment from "moment"; // Import moment for date manipulation
 import "../Expense/Expense.css";
 
 const { Option } = Select;
@@ -158,47 +158,53 @@ const History = () => {
     <div className="history-page">
       <h1>Expense History</h1>
       <div className="filters">
-        <Select
-          placeholder="Select Category"
-          onChange={handleCategoryChange}
-          style={{ width: 200, marginRight: 10 }}
-        >
-          {categories.map((category) => (
-            <Option key={category.id} value={category.id}>
-              {category.emoji} {category.name}
-            </Option>
-          ))}
-        </Select>
+        <div className="filter-controls">
+          <Select
+            placeholder="Select Category"
+            onChange={handleCategoryChange}
+            style={{ width: 200, marginRight: 10 }}
+          >
+            {categories.map((category) => (
+              <Option key={category.id} value={category.id}>
+                {category.emoji} {category.name}
+              </Option>
+            ))}
+          </Select>
 
-        <Select
-          placeholder="Select Year"
-          onChange={handleYearChange}
-          style={{ width: 120, marginRight: 10 }}
-        >
-          {Array.from({ length: 10 }, (_, i) => (
-            <Option key={i} value={new Date().getFullYear() - i}>
-              {new Date().getFullYear() - i}
-            </Option>
-          ))}
-        </Select>
+          <Select
+            placeholder="Select Year"
+            onChange={handleYearChange}
+            style={{ width: 120, marginRight: 10 }}
+          >
+            {Array.from({ length: 10 }, (_, i) => (
+              <Option key={i} value={new Date().getFullYear() - i}>
+                {new Date().getFullYear() - i}
+              </Option>
+            ))}
+          </Select>
 
-        <Select
-          placeholder="Select Month"
-          onChange={handleMonthChange}
-          style={{ width: 120, marginRight: 10 }}
-        >
-          {Array.from({ length: 12 }, (_, i) => (
-            <Option key={i} value={i + 1}>
-              {new Date(0, i).toLocaleString("default", { month: "long" })}
-            </Option>
-          ))}
-        </Select>
+          <Select
+            placeholder="Select Month"
+            onChange={handleMonthChange}
+            style={{ width: 120, marginRight: 10 }}
+          >
+            {Array.from({ length: 12 }, (_, i) => (
+              <Option key={i} value={i + 1}>
+                {new Date(0, i).toLocaleString("default", { month: "long" })}
+              </Option>
+            ))}
+          </Select>
 
-        <RangePicker onChange={handleDateRangeChange} style={{ marginRight: 10 }} />
+          <RangePicker onChange={handleDateRangeChange} style={{ marginRight: 10 }} />
 
-        <Button type="primary" onClick={handleFilterClick}>
-          Filter
-        </Button>
+          <Button
+            type="primary"
+            onClick={handleFilterClick}
+            style={{ background: "#FF1493", border: "none", marginLeft: 10 }}
+          >
+            Filter
+          </Button>
+        </div>
       </div>
 
       <div className="expenses-container">
@@ -243,24 +249,27 @@ const History = () => {
             type="text"
             value={editExpense?.name || ""}
             onChange={(e) => setEditExpense({ ...editExpense, name: e.target.value })}
+            style={{ marginBottom: 10, width: "100%", padding: "5px" }}
           />
           <label>Description:</label>
           <input
             type="text"
             value={editExpense?.description || ""}
             onChange={(e) => setEditExpense({ ...editExpense, description: e.target.value })}
+            style={{ marginBottom: 10, width: "100%", padding: "5px" }}
           />
           <label>Amount:</label>
           <input
             type="number"
             value={editExpense?.amount || ""}
             onChange={(e) => setEditExpense({ ...editExpense, amount: e.target.value })}
+            style={{ marginBottom: 10, width: "100%", padding: "5px" }}
           />
           <label>Date:</label>
           <DatePicker
             value={editExpense?.date ? moment(editExpense.date) : null}
             onChange={(date) => setEditExpense({ ...editExpense, date: date })}
-            style={{ width: "100%" }}
+            style={{ width: "100%", marginBottom: 10 }}
           />
         </div>
       </Modal>
